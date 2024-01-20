@@ -11,10 +11,13 @@ from selenium.webdriver.firefox.options import Options
 
 import string
 
-def search_movie(movie_title: str):
+def search_movie_title(movie_title: str) -> str:
     imdb = Cinemagoer()
 
     movie = imdb.search_movie(movie_title)[0]
+    return movie.movieID
+
+def scrape_movie(movieID: str) -> str:
     movieID, movie_name = movie.movieID, movie['long imdb title']
  
     # IMDB url is straightforward
@@ -26,11 +29,7 @@ def search_movie(movie_title: str):
     formatted_name = '-'.join((movie_name.lower().translate(remove_chars).split(' ')))
     shot_on_what_URL = "https://shotonwhat.com/" + formatted_name
 
-    #print(shot_on_what_URL)
-    #print(scrape_specs(shot_on_what_URL))
-    #print('============')
-
-    #print(scrape_photos(imdb_URL))
+    return ""
 
 # scrape camera specs and other related info
 def scrape_specs(URL: str):
@@ -91,6 +90,3 @@ def scrape_photos(URL: str):
             image_links.append(link)
 
     return image_links
-
-movie_name = input("enter movie name: ")
-search_movie(movie_name)
