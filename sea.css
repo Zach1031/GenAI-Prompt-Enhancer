@@ -45,6 +45,12 @@ body {
     transition: 0.3s;
     filter: blur(1.5rem);
     font-family: 'Courier New', Courier, monospace;
+
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
   
 .img__wrap:hover .img__description {
