@@ -52,6 +52,18 @@ body {
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+
+.input {
+    height: 40vmin;
+    width: 25vmin;
+    border: 1px solid aliceblue;
+    background-color: black;
+    color: aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+    padding: 16px;
+    font-size: 16px;
+}
   
 .img__wrap:hover .img__description {
     visibility: visible;
