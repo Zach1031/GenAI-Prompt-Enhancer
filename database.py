@@ -12,6 +12,7 @@ def __intialize_db():
 
     cur.execute("CREATE TABLE movies( "
         "id string NOT NULL, "
+        "year string, "
         "image1 string, "
         "image2 string, "
         "director string, "

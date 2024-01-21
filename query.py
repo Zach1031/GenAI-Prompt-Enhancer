@@ -29,24 +29,27 @@ def create_query(query: str) -> str:
 
     parsed_movie = [val for val in items_list if val is not None]
 
+    year = parsed_movie[0]
+    parsed_movie = parsed_movie[1:]
+
     images = ''
-    if 'http' in items_list[0]:
-        if 'http' in items_list[1]:
-            images = items_list[0] + ' ' + items_list[1] + ' '
-            items_list = items_list[2:]
+    if 'http' in parsed_movie[0]:
+        if 'http' in parsed_movie[1]:
+            images = parsed_movie[0] + ' ' + parsed_movie[1] + ' '
+            parsed_movie = parsed_movie[2:]
         else:
-            images = items_list[0] + ' '
-            items_list = items_list[1:]
+            images = parsed_movie[0] + ' '
+            parsed_movie = parsed_movie[1:]
 
 
-    ret = ' '.join([images, context, movie, (', '.join(parsed_movie))])
+    ret = ' '.join(['film still,', images, context, movie, year + ',', (', '.join(parsed_movie))])
     
-    ret += ' --raw'
+    ret += ' --style raw' + ' --stylize 0'
 
     return ret 
 
 
 
-movie_title = input("Enter prompt: ")
-print(create_query(movie_title))
+#movie_title = input("Enter prompt: ")
+#print(create_query(movie_title))
 

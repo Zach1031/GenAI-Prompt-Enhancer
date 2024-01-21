@@ -39,15 +39,9 @@ def scrape_movie(movie):
 def scrape_specs(URL: str):
     # dictionary containing export values
 
-    # page = requests.get(URL)
+    page = requests.get(URL)
 
-    # soup = BeautifulSoup(page.content, "html.parser")
-
-    # local file used for testing
-    # local_file = open("lighthouse_camera.html")
-    local_file = open("social_network.html")
-    #soup = BeautifulSoup(requests.get(URL).content, "html.parser")
-    soup = BeautifulSoup(local_file, "html.parser")
+    soup = BeautifulSoup(page.content, "html.parser")
 
     export = {}
 
@@ -57,10 +51,10 @@ def scrape_specs(URL: str):
     left, right = tables[0], tables[1]
 
     # store camera model and genre based on position
-    export['camera_model'], export['genres'], export['acquisition'] = left.find_all("div")[3].text, left.find_all("b")[0].text, left.find_all("div")[1].text
+    export['camera_model'], export['genres'], export['acquisition'] = ('shot on ' + left.find_all("div")[3].text), left.find_all("b")[0].text, left.find_all("div")[1].text
 
     right_divs = right.find_all("div")
-    export['film_stock'], export['film_width'] = right_divs[9].text, right_divs[11].text 
+    export['film_stock'], export['film_width'] = right_divs[9].text, (right_divs[11]).text[0:4]
 
     export['director'] = "Film By " + soup.find_all("div", {"class": "creatives"})[1].find_all("a")[0].text
 
@@ -75,6 +69,8 @@ def scrape_specs(URL: str):
 
         if 'color-profile' in data['href']:
             export['color'] = data.text
+
+    export['year'] = '(' + ((soup.find_all('span', {'class': 'titleyear'}))[1]).text + ')'
 
     return export
 
