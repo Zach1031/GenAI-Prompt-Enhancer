@@ -14,7 +14,7 @@ window.onmousemove = e => {
     const percentage = (mouseDelta / maxDelta) * -100, nextPercentage = parseFloat(track.dataset.prevPercentage) + percentage;
     track.dataset.percentage = nextPercentage;
     track.style.transform = `translate(${nextPercentage}%, -50%)`;
-    for (const image of track.getElementsByClassName("image")) {
+    for (const image of track.getElementsByClassName("img__img")) {
         image.style.objectPosition = `${nextPercentage + 100}% 50%`;
     }
 }

@@ -13,7 +13,46 @@ body {
     transition: 0.5s;
 }
 
-#image-track > .image:hover {
+.img__wrap {
+    position: relative;
+    height: 40vmin;
+    width: 25vmin;
+}
+
+.img__img {
+    height: 40vmin;
+    width: 25vmin;
+    object-fit: cover;
+    object-position: 100% 50%;
+    transition: .3s;
+
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.img__description {
+    transition: .2s;
+    transform: translateY(1em);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    color: aliceblue;
+    transition: 0.3s;
+    filter: blur(1.5rem);
+    font-family: 'Courier New', Courier, monospace;
+}
+  
+.img__wrap:hover .img__description {
+    visibility: visible;
+    filter: blur(0);
+}
+
+.img__wrap:hover > .img__img {
     filter: blur(1.5rem);
 }
 
